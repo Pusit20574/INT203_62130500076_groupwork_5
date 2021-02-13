@@ -25,19 +25,19 @@
    <div id = "app" class="grid place-content-center mr-32">
       <div class="flex">
       <!-- count Photo & Like -->
-      <h1 class="text-xl mt-16 ml-40">Photos ( {{ countShow }} ) </h1> 
-      <h1 class="text-xl mt-16 ml-10">Liked👍 ( {{ countLike }} )</h1>
+      <h1 class="font-mono text-xl font-medium mt-16 ml-40">Photos ({{ countShow }}) </h1> 
+      <h1 class="font-mono text-xl font-medium mt-16 ml-10">Liked👍 ({{ countLike }})</h1>
       </div>
 
       <!-- loop Photo -->
       <div v-for="(picture,index) in allPic" class="mt-6">
          <!-- white border -->
-         <div class="flex ml-16 bg-white hover:shadow" style="width: 28rem; height: 9rem;">
+         <div class="flex ml-16 bg-white hover:shadow" style="width: 29.2rem; height: 9rem;">
             <!-- picture display -->
             <a class= 'flex ml-3 mt-2' @click="showFavIcon(index)"><img :src = 'picture.url' class="max-w-20 max-h-32 rounded-lg"></a>
             <!-- picture name and heart display -->
             <div class="flex ml-5 mt-14">
-               <p class="">{{picture.name}}</p>
+               <p class="font-mono">{{picture.name}}</p>
                <p v-show="picture.done" class="material-icons ml-2 flex text-red-500">favorite</p>
             </div>
          </div>
