@@ -23,18 +23,31 @@
 <body class="bg-gray-300">
 
    <div id = "app" class="grid place-content-center mr-32">
+      <!-- search bar -->
+      <div class="mt-10 ml-20">
+         <!-- icon -->
+         <button @click = "isHidden = false" v-show = "isHidden"><span class="material-icons text-4xl">search</span></button>
+         <!-- search input form -->
+         <input v-show="!isHidden" v-model="searchName" @keyup.enter="doSearch" type="text" placeholder="Enter name of Photo" class="ml-20 rounded-lg text-md border py-2 px-3 text-grey-darkest">
+         <!-- cancel button -->
+         <button @click = "cancel" v-show = "!isHidden" class="ml-10 text-xl border-2 rounded shadow ripple font-normal text-gray-400 bg-white">cancel</button>
+         <!-- text No Photos -->
+         <p v-show = "noResult" class="ml-20 mt-10 font-mono text-red-400 text-4xl">X No Photos</p>
+      </div>
+
+      <!-- Display amount -->
       <div class="flex">
-      <!-- count Photo & Like -->
-      <h1 class="font-mono text-xl font-medium mt-16 ml-40">Photos ({{ countShow }}) </h1> 
-      <h1 class="font-mono text-xl font-medium mt-16 ml-10">Liked👍 ({{ countLike }})</h1>
+         <!-- count Photo & Like -->
+         <h1 class="font-mono text-xl font-medium mt-10 ml-40">Photos ({{ countShow }}) </h1> 
+         <h1 class="font-mono text-xl font-medium mt-10 ml-10">Liked👍 ({{ countLike }})</h1>
       </div>
 
       <!-- loop Photo -->
-      <div v-for="(picture,index) in allPic" class="mt-6">
+      <div v-for="(picture,index) in resultQuery" class="mt-6" v-show = "!expandPhoto">
          <!-- white border -->
          <div class="flex ml-16 bg-white hover:shadow" style="width: 29.2rem; height: 9rem;">
             <!-- picture display -->
-            <a class= 'flex ml-3 mt-2' @click="showFavIcon(index)"><img :src = 'picture.url' class="max-w-20 max-h-32 rounded-lg"></a>
+            <img :src = 'picture.url' @click="showFavIcon(index) ; expandPic(picture.url)" class="flex ml-3 mt-2 max-w-20 max-h-32 rounded-lg"></>
             <!-- picture name and heart display -->
             <div class="flex ml-5 mt-14">
                <p class="font-mono">{{picture.name}}</p>
@@ -42,6 +55,21 @@
             </div>
          </div>
       </div>
+
+      <!-- Expand Photo -->
+      <div class="mt-5 ml-20 bg-black w-full h-screen" v-show="expandPhoto">
+         <!-- bg -->
+         <div class="h-1/6 flex justify-end">
+            <p class="material-icons text-3xl mt-5 mr-10 text-red-500">favorite</p>
+             <button @click="expandPic" class="material-icons h-1/2 text-5xl mr-8 mt-2 text-white">highlight_off</button>
+            </div>
+         <!-- display expand photo -->
+         <div class="flex justify-center">
+             <img class="h-full pb-2 -mt-8" :src="photoIndex">
+         </div>
+      </div>
+      
+
    </div>
 
    <!-- my main.js -->
