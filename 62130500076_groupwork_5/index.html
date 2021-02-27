@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>Basic Vue Js - HelloWorld App</title>
+
+   <!-- https://google.github.io/material-design-icons/#icon-font-for-the-web -->
+   <!-- Using via Google Web Fonts -->
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+   <!-- https://tailwindcss.com/docs/installation -->
+   <!-- Using Tailwind via CDN -->
+   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+
+   <!-- https://v3.vuejs.org/guide/installation.html#release-notes -->
+   <!-- Vue CDN -->
+   <script src="https://unpkg.com/vue@next"></script>
+
+</head>
+
+<body class="bg-gray-800">
+
+   <div id = "app" class="grid place-content-center mr-32"> 
+      <!-- <div></div> -->
+      <!-- icon -->
+      <div class="flex mt-10 ml-20">
+         <p class="mr-56 font-mono text-2xl text-red-500 font-medium">Photo Gallery</p>
+         <button @click = "showSearch = false" v-show = "showSearch"><span class="material-icons text-4xl text-gray-200">search</span></button>
+      </div>
+         <!-- search bar -->
+         <photo-search :no-photo = "noResult" @cancel-button = "cancel" @do-search = "doSearch" @add-temp-search = "addSearchNames" v-if ="!showSearch"></photo-search>
+
+      <!-- Display amount -->
+      <div class="flex">
+         <!-- count Photo & Like -->
+         <h1 class="font-mono text-xl text-yellow-300 font-medium mt-8 ml-40">Photos ({{ countShow }}) </h1> 
+         <h1 class="font-mono text-xl text-yellow-300 font-medium mt-8 ml-10">Liked👍 ({{ countLike }})</h1>
+         <hr/>
+      </div>
+
+      <!-- Photo list -->
+      <photo-item v-if="!expandPhoto" :result-query = "resultQuery" @show-fav-icon = "showFavIcon" @expand-pic = "expandPic"></photo-item>
+      
+      <!-- Expand Photo -->
+      <photo-view v-show="expandPhoto" @expand-pic="expandPic" :photo-index = "photoIndex"></photo-view>
+   </div>
+   <!-- my main.js -->
+   <script src="./main.js"></script>
+   <script src="./components/photoItem.js"></script>
+   <script src="./components/photoSearch.js"></script>
+   <script src="./components/photoView.js"></script>
+
+   <script> const mountedApp = app.mount('#app'); </script>
+</body>
+
+</html>

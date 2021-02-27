@@ -1,15 +1,15 @@
-const app = {
+const app = Vue.createApp({
     data() {
         return {
             allPic: [{url: './images/1.jpg',name:'Firstday, Canada', done: false},
                      {url: './images/2.jpg',name:'Midnight, Australia', done: false},
                      {url: './images/3.jpg',name:'Evening, Newzealand', done: false}],
-            isHidden: true,
+            showSearch: true,
             searchName: '',
             enterSearchName: '',
             noResult: false,
             expandPhoto: false,
-            photoIndex: ''
+            photoIndex: '',
         }
     },
     methods:{
@@ -20,7 +20,6 @@ const app = {
             }else{
                 this.allPic[index].done = !this.allPic[index].done;     
             }
-                 
         },
         doSearch(){
             this.enterSearchName = this.searchName;
@@ -29,15 +28,18 @@ const app = {
             }else { this.noResult = false; }
         },
         cancel(){
-            this.isHidden = true;
             this.searchName = this.enterSearchName = '';
             this.noResult = false;
+            this.showSearch = true;
         },
         expandPic(index){
             if(!this.expandPhoto){
                 this.photoIndex = index;
             }
             this.expandPhoto = !this.expandPhoto;
+        },
+        addSearchNames(name){
+            this.searchName = name;
         }
         
     },
@@ -55,6 +57,4 @@ const app = {
         }
            
     }
-}
-
-Vue.createApp(app).mount('#app')
+})
