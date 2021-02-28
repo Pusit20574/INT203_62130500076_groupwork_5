@@ -23,14 +23,13 @@
 <body class="bg-gray-800">
 
    <div id = "app" class="grid place-content-center mr-32"> 
-
       <!-- icon -->
       <div class="flex mt-10 ml-20">
          <p class="mr-56 font-mono text-2xl text-red-500 font-medium">Photo Gallery</p>
          <button @click = "showSearch = false" v-show = "showSearch"><span class="material-icons text-4xl text-gray-200">search</span></button>
       </div>
 
-         <!-- search bar -->
+      <!-- search bar -->
       <photo-search :no-result="noResult" @cancel-button = "cancel" @do-search = "doSearch" @add-temp-search = "addSearchNames" v-show = "!showSearch"></photo-search>
 
       <!-- Display amount -->
