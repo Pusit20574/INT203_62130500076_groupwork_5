@@ -23,18 +23,18 @@
 <body class="bg-gray-800">
 
    <div id = "app" class="grid place-content-center mr-32"> 
-      <!-- <div></div> -->
+
       <!-- icon -->
       <div class="flex mt-10 ml-20">
          <p class="mr-56 font-mono text-2xl text-red-500 font-medium">Photo Gallery</p>
          <button @click = "showSearch = false" v-show = "showSearch"><span class="material-icons text-4xl text-gray-200">search</span></button>
       </div>
+
          <!-- search bar -->
-         <photo-search :no-photo = "noResult" @cancel-button = "cancel" @do-search = "doSearch" @add-temp-search = "addSearchNames" v-if ="!showSearch"></photo-search>
+      <photo-search :no-result="noResult" @cancel-button = "cancel" @do-search = "doSearch" @add-temp-search = "addSearchNames" v-show = "!showSearch"></photo-search>
 
       <!-- Display amount -->
       <div class="flex">
-         <!-- count Photo & Like -->
          <h1 class="font-mono text-xl text-yellow-300 font-medium mt-8 ml-40">Photos ({{ countShow }}) </h1> 
          <h1 class="font-mono text-xl text-yellow-300 font-medium mt-8 ml-10">Liked👍 ({{ countLike }})</h1>
          <hr/>
@@ -51,8 +51,8 @@
    <script src="./components/photoItem.js"></script>
    <script src="./components/photoSearch.js"></script>
    <script src="./components/photoView.js"></script>
-
    <script> const mountedApp = app.mount('#app'); </script>
+
 </body>
 
 </html>
